@@ -52,7 +52,7 @@ const RegisterForm = () => {
             className="form-control input-box"
           />
           <div className="text-center mt-4">
-            <ButtonCustom color="purple" type="submit">
+            <ButtonCustom color="primary" type="submit">
               Register
             </ButtonCustom>
           </div>
