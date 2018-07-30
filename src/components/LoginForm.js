@@ -13,6 +13,7 @@ const LoginForm = () => {
           type="email"
           id="defaultFormLoginEmailEx"
           className="form-control input-box"
+          autoFocus
         />
         <br />
         <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">

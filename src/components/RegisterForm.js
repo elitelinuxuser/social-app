@@ -14,6 +14,7 @@ const RegisterForm = () => {
             type="text"
             id="defaultFormRegisterNameEx"
             className="form-control input-box"
+            autoFocus
           />
           <br />
           <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
@@ -25,21 +26,21 @@ const RegisterForm = () => {
             className="form-control input-box"
           />
           <br />
-          <label htmlFor="defaultFormRegisterConfirmEx" className="grey-text">
-            Confirm your email
-          </label>
-          <input
-            type="email"
-            id="defaultFormRegisterConfirmEx"
-            className="form-control input-box"
-          />
-          <br />
           <label htmlFor="defaultFormRegisterPasswordEx" className="grey-text">
             Your password
           </label>
           <input
             type="password"
             id="defaultFormRegisterPasswordEx"
+            className="form-control input-box"
+          />
+          <br />
+          <label htmlFor="defaultFormRegisterConfirmEx" className="grey-text">
+            Confirm your password
+          </label>
+          <input
+            type="password"
+            id="defaultFormRegisterConfirmEx"
             className="form-control input-box"
           />
           <div className="text-center mt-4">
