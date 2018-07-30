@@ -6,7 +6,11 @@ import {
   NavbarToggler,
   Collapse,
   NavItem,
-  NavLink
+  NavLink,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from "mdbreact";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -19,11 +23,18 @@ class NavbarHeader extends React.Component {
       dropdownOpen: false
     };
     this.onClick = this.onClick.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   onClick() {
     this.setState({
       collapse: !this.state.collapse
+    });
+  }
+
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
     });
   }
 
@@ -41,19 +52,15 @@ class NavbarHeader extends React.Component {
                 <NavLink to="#">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="#">Features</NavLink>
+                <NavLink to="#">Friends</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="#">Pricing</NavLink>
+                <NavLink to="#">Colleges</NavLink>
               </NavItem>
-            </NavbarNav>
-            {console.log(NavbarNav)}
-            <NavbarNav>
-              <NavItem>
+              <NavItem className="nav-search">
                 <form className="form-inline">
-                  <i className="fa fa-user icon-profile" />
                   <input
-                    className="form-control mr-sm-2"
+                    className="form-control form-control-sm mr-sm-2"
                     type="text"
                     placeholder="Search"
                     aria-label="Search"
@@ -61,9 +68,24 @@ class NavbarHeader extends React.Component {
                 </form>
               </NavItem>
             </NavbarNav>
+
             <NavbarNav right>
               <NavItem>
-                <NavLink to="#">Logout</NavLink>
+                <Dropdown
+                  size="lg"
+                  isOpen={this.state.dropdownOpen}
+                  toggle={this.toggle}
+                >
+                  <DropdownToggle nav>
+                    <i className="fa fa-user icon-profile" />
+                    <i className="fa fa-angle-down" />
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem href="#">Profile</DropdownItem>
+                    <DropdownItem href="#">Settings</DropdownItem>
+                    <DropdownItem href="#">Logout</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </NavItem>
             </NavbarNav>
           </Collapse>
