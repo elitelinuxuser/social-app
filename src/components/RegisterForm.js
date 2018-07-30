@@ -14,7 +14,15 @@ const RegisterForm = () => {
             type="text"
             id="defaultFormRegisterNameEx"
             className="form-control input-box"
-            autoFocus
+          />
+          <br />
+          <label htmlFor="defaultFormRegisterUsnEx" className="grey-text">
+            Your USN
+          </label>
+          <input
+            type="text"
+            id="defaultFormRegisterUsnEx"
+            className="form-control input-box"
           />
           <br />
           <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
