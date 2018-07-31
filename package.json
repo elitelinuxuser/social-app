@@ -39,6 +39,8 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -98,5 +100,6 @@
   "devDependencies": {
     "node-sass": "^4.9.2",
     "sass-loader": "^7.0.3"
-  }
+  },
+  "proxy": "http://localhost:5000/"
 }
