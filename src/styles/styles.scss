@@ -1,5 +1,17 @@
+@import "loaders.css/src/animations/pacman.scss";
 @import "~antd/dist/antd.css";
 @import "./base/settings";
 @import "./base/base";
 @import "./components/form";
 @import "./components/navbar";
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+}
+
+.tabs-wrapper {
+  text-align: center;
+}

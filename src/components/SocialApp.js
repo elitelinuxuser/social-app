@@ -1,10 +1,9 @@
 import React from "react";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { connect } from "react-redux";
 import { fetchPosts } from "../reducers/ActionCreators";
+import TabsPage from "./TabsPage";
 
 const Post = props => {
   return (
@@ -28,9 +27,7 @@ class SocialApp extends React.Component {
       <div>
         <Navbar />
         <div>{this.props.posts.map(post => <Post post={post} />)}</div>
-
-        <LoginForm />
-        <RegisterForm />
+        <TabsPage />
         <Footer />
       </div>
     );

@@ -1,14 +1,21 @@
 import React, { Component } from "react";
+
+//MDB React
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+
+//Social App Component
 import SocialApp from "./components/SocialApp";
+
+//Redux
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import postReducer from "./reducers/postReducer";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { BrowserRouter } from "react-router-dom";
+
 const store = createStore(
   combineReducers({ posts: postReducer }),
   applyMiddleware(thunk, logger)
