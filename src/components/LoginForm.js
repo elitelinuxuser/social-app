@@ -2,10 +2,41 @@ import React, { Component } from "react";
 import ButtonCustom from "./ButtonCustom";
 
 class LoginForm extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      email: "",
+      password: ""
+    };
+
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleEmailChange(event) {
+    const email = event.target.value;
+
+    this.setState({
+      email
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    alert("Email: " + this.state.email + "Password: " + this.state.password);
+  }
+
+  handlePasswordChange(event) {
+    const password = event.target.value;
+    this.setState({ password });
+  }
+
   render() {
     return (
       <div className="container form-style">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <p className="h4 text-center mb-4">Sign in</p>
           <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
             Your email
@@ -13,6 +44,8 @@ class LoginForm extends Component {
           <input
             type="email"
             id="defaultFormLoginEmailEx"
+            value={this.state.email}
+            onChange={this.handleEmailChange}
             className="form-control input-box"
             autoFocus
           />
@@ -23,6 +56,8 @@ class LoginForm extends Component {
           <input
             type="password"
             id="defaultFormLoginPasswordEx"
+            password={this.state.password}
+            onChange={this.handlePasswordChange}
             className="form-control input-box"
           />
           <div className="text-center mt-4">
