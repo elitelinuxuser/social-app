@@ -5,10 +5,23 @@ class Posts extends React.Component {
   constructor() {
     super();
     this.state = {
-      like: false
+      like: false,
+      iconType: "heart-o",
+      colorChange: "rgba(0, 0, 0, 0.45)"
     };
+    this.handleClick = this.handleClick.bind(this);
   }
+
+  handleClick() {
+    this.setState({
+      like: !this.state.like,
+      iconType: this.state.like ? "heart-o" : "heart",
+      colorChange: this.state.like ? "rgba(0, 0, 0, 0.45)" : "#3F51B5"
+    });
+  }
+
   render() {
+    const userName = <div className="username">Dummy Text</div>;
     return (
       <div className="container col-lg-4 col-md-6 mb-r">
         <Card>
@@ -19,6 +32,7 @@ class Posts extends React.Component {
             title={this.props.post.title}
             description={this.props.post.body}
           />
+
           <Card
             cover={
               <img
@@ -27,11 +41,11 @@ class Posts extends React.Component {
               />
             }
             actions={[
-              this.state.like ? (
-                <Icon type="heart" onClick={this.setState({ like: false })} />
-              ) : (
-                <Icon type="heart-o" />
-              ),
+              <Icon
+                style={{ color: this.state.colorChange }}
+                type={this.state.iconType}
+                onClick={this.handleClick}
+              />,
               <Icon type="message" />,
               <Icon type="share-alt" />,
               <Icon type="ellipsis" />
