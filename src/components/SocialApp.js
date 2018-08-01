@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { connect } from "react-redux";
 import { fetchPosts } from "../reducers/ActionCreators";
 import TabsPage from "./TabsPage";
+import Posts from "./Posts";
 
 const Post = props => {
   return (
@@ -26,6 +27,7 @@ class SocialApp extends React.Component {
     return (
       <div>
         <Navbar />
+        <Posts />
         <div>{this.props.posts.map(post => <Post post={post} />)}</div>
         <TabsPage />
         <Footer />
