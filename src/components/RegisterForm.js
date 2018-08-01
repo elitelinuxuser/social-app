@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ButtonCustom from "./ButtonCustom";
-
+import { register } from "../reducers/ActionCreators";
+import { connect } from "react-redux";
 class RegisterForm extends Component {
   constructor() {
     super();
@@ -55,7 +56,8 @@ class RegisterForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    // alert(JSON.stringify(this.state));
+    this.props.dispatch(register(this.state));
   }
 
   render() {
@@ -128,4 +130,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm;
+export default connect()(RegisterForm);

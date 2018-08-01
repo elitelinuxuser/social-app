@@ -13,11 +13,16 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import postReducer from "./reducers/postReducer";
+import userReducer from "./reducers/userReducer";
+
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(
-  combineReducers({ posts: postReducer }),
+  combineReducers({
+    posts: postReducer,
+    user: userReducer
+  }),
   applyMiddleware(thunk, logger)
 );
 class App extends Component {

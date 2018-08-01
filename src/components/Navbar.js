@@ -13,7 +13,8 @@ import {
   DropdownItem
 } from "mdbreact";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import { connect } from "react-redux";
+import { logout } from "../reducers/ActionCreators";
 class NavbarHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -24,6 +25,7 @@ class NavbarHeader extends React.Component {
     };
     this.onClick = this.onClick.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   onClick() {
@@ -36,6 +38,9 @@ class NavbarHeader extends React.Component {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
+  }
+  handleLogout() {
+    this.props.dispatch(logout());
   }
 
   render() {
@@ -68,26 +73,29 @@ class NavbarHeader extends React.Component {
                 </form>
               </NavItem>
             </NavbarNav>
-
-            <NavbarNav right>
-              <NavItem>
-                <Dropdown
-                  size="lg"
-                  isOpen={this.state.dropdownOpen}
-                  toggle={this.toggle}
-                >
-                  <DropdownToggle nav>
-                    <i className="fa fa-user icon-profile" />
-                    <i className="fa fa-angle-down" />
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem href="#">Profile</DropdownItem>
-                    <DropdownItem href="#">Settings</DropdownItem>
-                    <DropdownItem href="#">Logout</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </NavItem>
-            </NavbarNav>
+            {this.props.user.email && (
+              <NavbarNav right>
+                <NavItem>
+                  <Dropdown
+                    size="lg"
+                    isOpen={this.props.dropdownOpen}
+                    toggle={this.props.toggle}
+                  >
+                    <DropdownToggle nav>
+                      <i className="fa fa-user icon-profile" />
+                      <i className="fa fa-angle-down" />
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem href="#">Profile</DropdownItem>
+                      <DropdownItem href="#">Settings</DropdownItem>
+                      <DropdownItem href="#" onClick={this.handleLogout}>
+                        Logout
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </NavItem>
+              </NavbarNav>
+            )}
           </Collapse>
         </Navbar>
       </Router>
@@ -95,4 +103,9 @@ class NavbarHeader extends React.Component {
   }
 }
 
-export default NavbarHeader;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+export default connect(mapStateToProps)(NavbarHeader);

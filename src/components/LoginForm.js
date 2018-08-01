@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ButtonCustom from "./ButtonCustom";
-
+import { login } from "../reducers/ActionCreators";
+import { connect } from "react-redux";
 class LoginForm extends Component {
   constructor() {
     super();
@@ -25,7 +26,8 @@ class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    alert("Email: " + this.state.email + "Password: " + this.state.password);
+    // alert("Email: " + this.state.email + "Password: " + this.state.password);
+    this.props.dispatch(login(this.state.email, this.state.password));
   }
 
   handlePasswordChange(event) {
@@ -71,4 +73,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default connect()(LoginForm);
