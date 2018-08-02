@@ -6,10 +6,6 @@ import { fetchPosts } from "../reducers/ActionCreators";
 import TabsPage from "./TabsPage";
 import Posts from "./Posts";
 
-const RenderPost = props => {
-  const posts = props.posts.map(post => <Posts post={post} />);
-  return <div>{posts}</div>;
-};
 class SocialApp extends React.Component {
   constructor(props) {
     super(props);
