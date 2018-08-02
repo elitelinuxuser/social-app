@@ -3,8 +3,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { connect } from "react-redux";
 import { fetchPosts } from "../reducers/ActionCreators";
-import TabsPage from "./TabsPage";
 import Posts from "./Posts";
+import LandingPage from "./LandingPage";
 
 class SocialApp extends React.Component {
   constructor(props) {
@@ -13,13 +13,10 @@ class SocialApp extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar />
-        {!this.props.user.name && <TabsPage />}
+      <div className="main-div container-fluid">
+        {!this.props.user.name && <LandingPage />}
         {this.props.user.name &&
           this.props.posts.map(post => <Posts post={post} />)}
-
-        <Footer />
       </div>
     );
   }

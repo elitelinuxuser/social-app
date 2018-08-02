@@ -124,6 +124,9 @@ class RegisterForm extends Component {
               Register
             </ButtonCustom>
           </div>
+          <div className="container">
+            Already signed up? <a href="#">Sign In</a>
+          </div>
         </form>
       </div>
     );
