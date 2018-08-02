@@ -62,7 +62,10 @@ class LoginForm extends Component {
             onChange={this.handlePasswordChange}
             className="form-control input-box"
           />
-          <div className="text-center mt-4">
+          <div className="align-left">
+            <a href="#">Forgot password?</a>
+          </div>
+          <div className="text-center mt-4" style={{ borderTop: "0" }}>
             <ButtonCustom color="primary" type="submit">
               Login
             </ButtonCustom>

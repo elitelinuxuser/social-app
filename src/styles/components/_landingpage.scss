@@ -1,0 +1,18 @@
+@import "../base/settings";
+
+.landing-left-column {
+  background-color: $site-blue;
+  display: grid;
+}
+
+#footer-custom {
+  margin-top: 0 !important;
+}
+
+.fill-margin {
+  margin: auto;
+}
+
+#margin-solve {
+  margin-bottom: 0;
+}
