@@ -15,9 +15,11 @@ import {
 import { BrowserRouter as Router } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../reducers/ActionCreators";
+
 class NavbarHeader extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       collapse: false,
       isWideEnough: false,

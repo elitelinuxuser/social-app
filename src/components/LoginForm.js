@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ButtonCustom from "./ButtonCustom";
 import { login } from "../reducers/ActionCreators";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 class LoginForm extends Component {
   constructor() {
     super();
@@ -28,8 +29,15 @@ class LoginForm extends Component {
     e.preventDefault();
     // alert("Email: " + this.state.email + "Password: " + this.state.password);
     this.props.dispatch(login(this.state.email, this.state.password));
-  }
+    console.log(JSON.stringify(this.props.user));
 
+    setTimeout(() => {
+      if (this.props.user.name) {
+        console.log(JSON.stringify(this.props.user));
+        return <Redirect to="/post" />;
+      }
+    }, 3000);
+  }
   handlePasswordChange(event) {
     const password = event.target.value;
     this.setState({ password });
@@ -76,4 +84,10 @@ class LoginForm extends Component {
   }
 }
 
-export default connect()(LoginForm);
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(LoginForm);

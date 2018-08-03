@@ -7,7 +7,9 @@ export const addPosts = posts => ({
 });
 
 export const fetchPosts = () => dispatch => {
-  return fetch(baseUrl)
+  return fetch(baseUrl, {
+    credentials: "include"
+  })
     .then(
       response => {
         if (response.ok) {
@@ -31,6 +33,7 @@ export const fetchPosts = () => dispatch => {
       return dispatch(addPosts(posts));
     })
     .catch(error => {
+      console.log("dbjabd");
       console.log(error);
     });
 };
@@ -73,7 +76,7 @@ export const login = (email, password) => dispatch => {
     )
     .then(response => response.json())
     .then(user => {
-      console.log(user);
+      console.log(JSON.stringify(user));
       return dispatch(addUser(user));
     })
     .catch(error => {
