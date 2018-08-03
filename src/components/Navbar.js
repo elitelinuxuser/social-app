@@ -21,11 +21,13 @@ class NavbarHeader extends React.Component {
     this.state = {
       collapse: false,
       isWideEnough: false,
-      dropdownOpen: false
+      dropdownOpen: false,
+      userName: ""
     };
     this.onClick = this.onClick.bind(this);
     this.toggle = this.toggle.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   onClick() {
@@ -41,6 +43,14 @@ class NavbarHeader extends React.Component {
   }
   handleLogout() {
     this.props.dispatch(logout());
+  }
+
+  handleSearch(e) {
+    const userName = e.target.value;
+    console.log(userName);
+    this.setState({
+      userName
+    });
   }
 
   render() {
@@ -69,6 +79,8 @@ class NavbarHeader extends React.Component {
                     type="text"
                     placeholder="Search"
                     aria-label="Search"
+                    value={this.state.userName}
+                    onChange={this.handleSearch}
                   />
                 </form>
               </NavItem>

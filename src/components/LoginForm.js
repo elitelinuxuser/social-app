@@ -38,26 +38,24 @@ class LoginForm extends Component {
   render() {
     return (
       <div className="container form-style">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="font-google">
           <p className="h4 text-center mb-4">Sign in</p>
-          <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
-            Your email
-          </label>
+          <label htmlFor="defaultFormLoginEmailEx">Your email</label>
           <input
             type="email"
             id="defaultFormLoginEmailEx"
+            placeholder="example@gmail.com"
             value={this.state.email}
             onChange={this.handleEmailChange}
             className="form-control input-box"
             autoFocus
           />
           <br />
-          <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
-            Your password
-          </label>
+          <label htmlFor="defaultFormLoginPasswordEx">Your password</label>
           <input
             type="password"
             id="defaultFormLoginPasswordEx"
+            placeholder="example"
             password={this.state.password}
             onChange={this.handlePasswordChange}
             className="form-control input-box"
@@ -69,6 +67,9 @@ class LoginForm extends Component {
             <ButtonCustom color="primary" type="submit">
               Login
             </ButtonCustom>
+            <div className="container">
+              Not yet Registered? <a href="#">Sign Up</a>
+            </div>
           </div>
         </form>
       </div>
