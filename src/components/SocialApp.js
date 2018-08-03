@@ -5,7 +5,12 @@ import { connect } from "react-redux";
 import Posts from "./Posts";
 import TabsPage from "./TabsPage";
 import LandingPage from "./LandingPage";
+import Comments from "./Comments";
 import { fetchPosts } from "../reducers/ActionCreators";
+const RenderPost = props => {
+  const posts = props.posts.map(post => <Posts post={post} />);
+  return <div>{posts}</div>;
+};
 class SocialApp extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +29,7 @@ class SocialApp extends React.Component {
       this.props.dispatch(fetchPosts());
     }
     return (
-      <div className="main-div container-fluid">
+      <div className="main-div">
         {!this.props.user.name && <LandingPage />}
         {this.props.user.name && <Navbar />}
         {this.props.user.name &&

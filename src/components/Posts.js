@@ -1,22 +1,33 @@
 import React from "react";
 import { Card, Icon, Avatar } from "antd";
+import Comments from "./Comments";
+
 const { Meta } = Card;
+
 class Posts extends React.Component {
   constructor() {
     super();
     this.state = {
       like: false,
       iconType: "heart-o",
-      colorChange: "rgba(0, 0, 0, 0.45)"
+      colorChange: "rgba(0, 0, 0, 0.45)",
+      commentShow: false
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleLikeClick = this.handleLikeClick.bind(this);
+    this.handleCommentClick = this.handleCommentClick.bind(this);
   }
 
-  handleClick() {
+  handleLikeClick() {
     this.setState({
       like: !this.state.like,
       iconType: this.state.like ? "heart-o" : "heart",
       colorChange: this.state.like ? "rgba(0, 0, 0, 0.45)" : "#3F51B5"
+    });
+  }
+
+  handleCommentClick() {
+    this.setState({
+      commentShow: !this.state.commentShow
     });
   }
 
@@ -44,14 +55,15 @@ class Posts extends React.Component {
               <Icon
                 style={{ color: this.state.colorChange }}
                 type={this.state.iconType}
-                onClick={this.handleClick}
+                onClick={this.handleLikeClick}
               />,
-              <Icon type="message" />,
+              <Icon type="message" onClick={this.handleCommentClick} />,
               <Icon type="share-alt" />,
               <Icon type="ellipsis" />
             ]}
           />
         </Card>
+        {this.state.commentShow ? <Comments /> : <div />}
       </div>
     );
   }

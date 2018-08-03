@@ -63,58 +63,55 @@ class RegisterForm extends Component {
   render() {
     return (
       <div className="container form-style" align="center">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="font-google">
           <p className="h4 text-center mb-4">Sign up</p>
-          <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-            Your name
-          </label>
+          <label htmlFor="defaultFormRegisterNameEx">Your name</label>
           <input
             type="text"
             id="defaultFormRegisterNameEx"
+            placeholder="First Name and Last Name"
             value={this.state.name}
             onChange={this.handleNameChange}
             className="form-control input-box"
           />
           <br />
-          <label htmlFor="defaultFormRegisterUsnEx" className="grey-text">
-            Your USN
-          </label>
+          <label htmlFor="defaultFormRegisterUsnEx">Your USN</label>
           <input
             type="text"
             id="defaultFormRegisterUsnEx"
+            placeholder="1XX16XX000"
             value={this.state.usn}
             onChange={this.handleUsnChange}
             className="form-control input-box"
           />
           <br />
-          <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
-            Your email
-          </label>
+          <label htmlFor="defaultFormRegisterEmailEx">Your email</label>
           <input
             type="email"
             id="defaultFormRegisterEmailEx"
+            placeholder="example@gmail.com"
             value={this.state.email}
             onChange={this.handleEmailChange}
             className="form-control input-box"
           />
           <br />
-          <label htmlFor="defaultFormRegisterPasswordEx" className="grey-text">
-            Your password
-          </label>
+          <label htmlFor="defaultFormRegisterPasswordEx">Your password</label>
           <input
             type="password"
             id="defaultFormRegisterPasswordEx"
+            placeholder="example"
             value={this.state.password}
             onChange={this.handlePasswordChange}
             className="form-control input-box"
           />
           <br />
-          <label htmlFor="defaultFormRegisterConfirmEx" className="grey-text">
+          <label htmlFor="defaultFormRegisterConfirmEx">
             Confirm your password
           </label>
           <input
             type="password"
             id="defaultFormRegisterConfirmEx"
+            placeholder="type it again"
             value={this.state.confirmPassword}
             onChange={this.handleConfirmPasswordChange}
             className="form-control input-box"
