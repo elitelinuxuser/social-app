@@ -10,7 +10,8 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Container
 } from "mdbreact";
 import { connect } from "react-redux";
 import { logout } from "../reducers/ActionCreators";
@@ -56,60 +57,63 @@ class NavbarHeader extends React.Component {
 
   render() {
     return (
-      <Navbar color="indigo" dark expand="md" fixed="top" scrolling>
-        <NavbarBrand href="/">
-          <strong>Navbar</strong>
-        </NavbarBrand>
-        {!this.state.isWideEnough && <NavbarToggler onClick={this.onClick} />}
-        <Collapse isOpen={this.state.collapse} navbar>
-          <NavbarNav left>
-            <NavItem active>
-              <NavLink to="#">Home</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="#">Friends</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="#">Colleges</NavLink>
-            </NavItem>
-            <NavItem className="nav-search">
-              <form className="form-inline">
-                <input
-                  className="form-control form-control-sm mr-sm-2"
-                  type="text"
-                  placeholder="Search"
-                  aria-label="Search"
-                  value={this.state.userName}
-                  onChange={this.handleSearch}
-                />
-              </form>
-            </NavItem>
-          </NavbarNav>
-          {this.props.user.email && (
-            <NavbarNav right>
+      <div>
+        <Navbar color="indigo" dark expand="sm" scrolling fixed="top">
+          <NavbarBrand href="/">
+            <strong>Navbar</strong>
+          </NavbarBrand>
+          {!this.state.isWideEnough && <NavbarToggler onClick={this.onClick} />}
+          <Collapse isOpen={this.state.collapse} navbar>
+            <NavbarNav left>
+              <NavItem active>
+                <NavLink to="#">Home</NavLink>
+              </NavItem>
               <NavItem>
-                <Dropdown
-                  size="lg"
-                  isOpen={this.props.dropdownOpen}
-                  toggle={this.props.toggle}
-                >
-                  <DropdownToggle nav>
-                    <i className="fa fa-user icon-profile" />
-                    <i className="fa fa-angle-down" />
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem href="#">Profile</DropdownItem>
-                    <DropdownItem href="#">Settings</DropdownItem>
-                    <DropdownItem href="#" onClick={this.handleLogout}>
-                      Logout
-                    </DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+                <NavLink to="#">Friends</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="#">Colleges</NavLink>
+              </NavItem>
+              <NavItem className="nav-search">
+                <form className="form-inline">
+                  <input
+                    className="form-control form-control-sm mr-sm-2"
+                    type="text"
+                    placeholder="Search"
+                    aria-label="Search"
+                    value={this.state.userName}
+                    onChange={this.handleSearch}
+                  />
+                </form>
               </NavItem>
             </NavbarNav>
-          )}
-        </Collapse>
-      </Navbar>
+            {this.props.user.email && (
+              <NavbarNav right>
+                <NavItem>
+                  <Dropdown
+                    size="lg"
+                    isopen={this.props.dropdownOpen}
+                    toggle={this.props.toggle}
+                  >
+                    <DropdownToggle nav>
+                      <i className="fa fa-user icon-profile" />
+                      <i className="fa fa-angle-down" />
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem href="#">Profile</DropdownItem>
+                      <DropdownItem href="#">Settings</DropdownItem>
+                      <DropdownItem href="#" onClick={this.handleLogout}>
+                        Logout
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </NavItem>
+              </NavbarNav>
+            )}
+          </Collapse>
+        </Navbar>
+        <Container className="text-center mb-custom" />
+      </div>
     );
   }
 }

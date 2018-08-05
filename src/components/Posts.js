@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Icon, Avatar } from "antd";
-import Comments from "./Comments";
+import Comments from "./comments/Comments";
 
 const { Meta } = Card;
 
@@ -34,7 +34,10 @@ class Posts extends React.Component {
   render() {
     const userName = <div className="username">Dummy Text</div>;
     return (
-      <div className="container col-lg-4 col-md-6 mb-r">
+      <div
+        className="container col-lg-6 col-md-4 mb-r"
+        style={{ maxWidth: "650px" }}
+      >
         <Card>
           <Meta
             avatar={
@@ -62,8 +65,8 @@ class Posts extends React.Component {
               <Icon type="ellipsis" />
             ]}
           />
+          {this.state.commentShow ? <Comments /> : <div />}
         </Card>
-        {this.state.commentShow ? <Comments /> : <div />}
       </div>
     );
   }

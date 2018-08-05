@@ -23,7 +23,7 @@ class TabsPage extends React.Component {
 
   render() {
     return (
-      <div className="container tabs-wrapper">
+      <div className="container tabs-wrapper" style={{}}>
         <Tabs defaultActiveKey="1" onChange={this.callback}>
           <TabPane
             tab="Sign In"
