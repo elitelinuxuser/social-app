@@ -1,11 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
 import { connect } from "react-redux";
 import Posts from "./Posts";
-import TabsPage from "./TabsPage";
 import LandingPage from "./LandingPage";
-import Comments from "./Comments";
 import { fetchPosts } from "../reducers/ActionCreators";
 const RenderPost = props => {
   const posts = props.posts.map(post => <Posts post={post} />);

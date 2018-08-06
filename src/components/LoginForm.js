@@ -71,7 +71,7 @@ class LoginForm extends Component {
           <div className="align-left">
             <a href="#">Forgot password?</a>
           </div>
-          <div className="text-center mt-4" style={{ borderTop: "0" }}>
+          <div className="text-center mt-1" style={{ borderTop: "0" }}>
             <ButtonCustom color="primary" type="submit">
               Login
             </ButtonCustom>

@@ -10,9 +10,9 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Container
 } from "mdbreact";
-import { BrowserRouter as Router } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../reducers/ActionCreators";
 
@@ -57,8 +57,8 @@ class NavbarHeader extends React.Component {
 
   render() {
     return (
-      <Router>
-        <Navbar color="indigo" dark expand="md" sticky="top" scrolling>
+      <div>
+        <Navbar color="indigo" dark expand="sm" scrolling fixed="top">
           <NavbarBrand href="/">
             <strong>Navbar</strong>
           </NavbarBrand>
@@ -92,7 +92,7 @@ class NavbarHeader extends React.Component {
                 <NavItem>
                   <Dropdown
                     size="lg"
-                    isOpen={this.props.dropdownOpen}
+                    isopen={this.props.dropdownOpen}
                     toggle={this.props.toggle}
                   >
                     <DropdownToggle nav>
@@ -112,7 +112,8 @@ class NavbarHeader extends React.Component {
             )}
           </Collapse>
         </Navbar>
-      </Router>
+        <Container className="text-center mb-custom" />
+      </div>
     );
   }
 }

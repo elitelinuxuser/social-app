@@ -116,7 +116,13 @@ class RegisterForm extends Component {
             onChange={this.handleConfirmPasswordChange}
             className="form-control input-box"
           />
-          <div className="text-center mt-4">
+          <div className="container align-left">
+            <label className="checkbox">
+              <input type="checkbox" />
+              I agree to the <a href="#">terms and conditions</a>
+            </label>
+          </div>
+          <div className="text-center mt-1">
             <ButtonCustom color="primary" type="submit">
               Register
             </ButtonCustom>
