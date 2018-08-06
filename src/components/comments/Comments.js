@@ -8,18 +8,27 @@ class CommentExampleComment extends React.Component {
   constructor() {
     super();
     this.state = {
-      levels: 6
+      levels: 6,
+      replyBoxShow: false
     };
+    this.handleReplyClick = this.handleReplyClick.bind(this);
   }
+
+  handleReplyClick() {
+    this.setState({
+      replyBoxShow: !this.state.replyBoxShow
+    });
+  }
+
   render() {
     if (this.state.levels === 0) {
       return <div />;
     } else {
       return (
-        <Comment.Group className="animated fadeIn" threaded>
+        <Comment.Group className="animated fadeIn threaded">
           <Comment>
             <Comment.Avatar src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
-            <Comment.Content>
+            <Comment.Content className="content-bottom">
               <Comment.Author as="a">Elliot Fu</Comment.Author>
               <Comment.Metadata>
                 <div>Yesterday at 12:30AM</div>
@@ -31,20 +40,31 @@ class CommentExampleComment extends React.Component {
               </Comment.Text>
               <Comment.Actions>
                 <Comment.Action>Like</Comment.Action>
-                <Comment.Action>Reply</Comment.Action>
+                <Comment.Action onClick={this.handleReplyClick}>
+                  Reply
+                </Comment.Action>
               </Comment.Actions>
             </Comment.Content>
+
+            {this.state.replyBoxShow ? (
+              <Form className="animated fadeIn reply-form">
+                <TextareaAutosize
+                  className="textarea-custom"
+                  rows={3}
+                  placeholder="minimum height is 3 rows"
+                />
+                <a type="submit" />
+              </Form>
+            ) : (
+              <div />
+            )}
+
             {this.state.levels !== 1 ? (
               <CommentCustom levels={this.state.levels - 1} />
             ) : (
               <div />
             )}
           </Comment>
-
-          <Form>
-            <TextareaAutosize rows={3} placeholder="minimun height is 3 rows" />
-            <Button color="primary">Add Comment</Button>
-          </Form>
         </Comment.Group>
       );
     }

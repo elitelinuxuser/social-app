@@ -23,7 +23,7 @@ class CommentCustom extends React.Component {
       <Comment.Group>
         <Comment>
           <Comment.Avatar src="https://react.semantic-ui.com/images/avatar/small/jenny.jpg" />
-          <Comment.Content>
+          <Comment.Content className="content-bottom">
             <Comment.Author as="a">Jenny Hess</Comment.Author>
             <Comment.Metadata>
               <div>Just now</div>
@@ -37,12 +37,13 @@ class CommentCustom extends React.Component {
             </Comment.Actions>
           </Comment.Content>
           {this.state.replyBoxShow ? (
-            <Form className="animated fadeIn">
+            <Form className="animated fadeIn reply-form">
               <TextareaAutosize
+                className="textarea-custom"
                 rows={1}
                 placeholder="minimum height is 1 row"
               />
-              <Button color="primary">Reply</Button>
+              <a type="submit" />
             </Form>
           ) : (
             <div />

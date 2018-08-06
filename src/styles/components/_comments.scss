@@ -133,7 +133,7 @@
 ---------------------*/
 
 .ui.comments .comment .text {
-  margin: 0.25em 0em 0.5em;
+  margin: 0.25em 0em 0.25em;
   font-size: 1em;
   word-wrap: break-word;
   color: rgba(0, 0, 0, 0.87);
@@ -203,8 +203,8 @@
 .ui.threaded.comments .comment .comments {
   margin: -1.5em 0 -1em 1.25em;
   // padding: 3em 0em 2em 2.25em;
-  -webkit-box-shadow: -1px 0px 0px rgba(34, 36, 38, 0.15);
-  box-shadow: -1px 0px 0px rgba(34, 36, 38, 0.15);
+  -webkit-box-shadow: -1px 0px 0px rgba(63, 81, 181, 0.4);
+  box-shadow: -1px 0px 0px rgba(63, 81, 181, 0.4);
 }
 
 /*--------------------
@@ -385,4 +385,27 @@
 //Custom rounded avatar
 .comment .avatar > img {
   border-radius: 50% !important;
+}
+
+.comment-hyperlink {
+  font-family: "Fredoka One", sans-serif;
+  color: #007bff !important;
+}
+
+// @overriding scss of bulma
+.content-bottom {
+  margin-bottom: 1rem !important;
+}
+
+.text > p {
+  margin-bottom: 0.2rem;
+}
+
+.reply-form {
+  padding-bottom: 1rem !important;
+}
+
+.textarea-custom {
+  border-radius: 25px !important;
+  border-color: rgba(63, 81, 181, 0.4) !important;
 }
