@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Icon, Avatar } from "antd";
-import Comments from "./comments/Comments";
+import Comments from "./Comments";
 import { connect } from "react-redux";
 import { fetchComments } from "../reducers/ActionCreators";
 const { Meta } = Card;

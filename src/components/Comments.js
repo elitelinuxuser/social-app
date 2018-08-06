@@ -1,14 +1,11 @@
 import React from "react";
 import { Comment, Form } from "semantic-ui-react";
-import Button from "../ButtonCustom";
-import CommentNested from "./CommentNested";
 import TextareaAutosize from "react-autosize-textarea";
 
-class CommentReplies extends React.Component {
+class Comments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      levels: this.props.levels,
       replyBoxShow: false
     };
     this.handleReplyClick = this.handleReplyClick.bind(this);
@@ -22,15 +19,19 @@ class CommentReplies extends React.Component {
 
   render() {
     return (
-      <Comment.Group>
+      <Comment.Group className="animated fadeIn threaded">
         <Comment>
-          <Comment.Avatar src="https://react.semantic-ui.com/images/avatar/small/jenny.jpg" />
+          <Comment.Avatar src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
           <Comment.Content className="content-bottom">
-            <Comment.Author as="a">Jenny Hess</Comment.Author>
+            <Comment.Author as="a">
+              {this.props.comment.author.name}
+            </Comment.Author>
             <Comment.Metadata>
-              <div>Just now</div>
+              <div>Yesterday at 12:30AM</div>
             </Comment.Metadata>
-            <Comment.Text>Elliot you are always so right :)</Comment.Text>
+            <Comment.Text>
+              <p>{this.props.comment.body}</p>
+            </Comment.Text>
             <Comment.Actions>
               <Comment.Action>Like</Comment.Action>
               <Comment.Action onClick={this.handleReplyClick}>
@@ -44,7 +45,7 @@ class CommentReplies extends React.Component {
               <TextareaAutosize
                 className="textarea-custom"
                 rows={1}
-                placeholder="Reply here!"
+                placeholder="Comment here!"
               />
               <a type="submit" />
             </Form>
@@ -52,15 +53,14 @@ class CommentReplies extends React.Component {
             <div />
           )}
 
-          {this.state.levels !== 1 ? (
-            <CommentNested levels={this.state.levels - 1} />
-          ) : (
-            <div />
-          )}
+          {this.props.comment.replies &&
+            this.props.comment.replies.map(reply => (
+              <Comments key={reply._id} comment={reply} />
+            ))}
         </Comment>
       </Comment.Group>
     );
   }
 }
 
-export default CommentReplies;
+export default Comments;
