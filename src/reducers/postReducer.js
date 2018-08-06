@@ -1,7 +1,21 @@
-const postReducer = (state = [], action) => {
+const postReducer = (
+  state = {
+    posts: [],
+    postCount: 0,
+    loading: true
+  },
+  action
+) => {
   switch (action.type) {
     case "ADD_POST":
-      return state.concat(action.data);
+      return {
+        ...state,
+        posts: state.posts.concat(action.data),
+        postCount: state.postCount + 1,
+        loading: false
+      };
+    case "POST_LOADING":
+      return { ...state, loading: true };
     case "REMOVE_POST":
       return state.filter(post => post._id !== action.postid);
     case "UPDATE_POST":

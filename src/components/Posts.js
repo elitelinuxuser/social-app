@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Icon, Avatar } from "antd";
 import Comments from "./Comments";
+import { connect } from "react-redux";
 
+import { fetchComments } from "../reducers/ActionCreators";
 const { Meta } = Card;
-
 class Posts extends React.Component {
   constructor() {
     super();
@@ -30,9 +31,8 @@ class Posts extends React.Component {
       commentShow: !this.state.commentShow
     });
   }
-
   render() {
-    const userName = <div className="username">Dummy Text</div>;
+    console.log("post render" + JSON.stringify(this.props.posts));
     return (
       <div className="container col-lg-4 col-md-6 mb-r">
         <Card>
@@ -63,9 +63,13 @@ class Posts extends React.Component {
             ]}
           />
         </Card>
-        {this.state.commentShow ? <Comments /> : <div />}
+        {this.state.commentShow &&
+          this.props.post.comments &&
+          this.props.post.comments.map(comment => (
+            <Comments comment={comment} />
+          ))}
       </div>
     );
   }
 }
-export default Posts;
+export default connect()(Posts);
