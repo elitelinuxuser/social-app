@@ -64,13 +64,12 @@ class Posts extends React.Component {
               <Icon type="ellipsis" />
             ]}
           />
-          {this.state.commentShow ? <Comments /> : <div />}
+          {this.state.commentShow &&
+            this.props.post.comments &&
+            this.props.post.comments.map(comment => (
+              <Comments key={comment._id} comment={comment} />
+            ))}
         </Card>
-        {this.state.commentShow &&
-          this.props.post.comments &&
-          this.props.post.comments.map(comment => (
-            <Comments comment={comment} />
-          ))}
       </div>
     );
   }

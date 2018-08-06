@@ -3,9 +3,9 @@ import { Comment, Form } from "semantic-ui-react";
 import CommentCustom from "./CommentNested";
 import TextareaAutosize from "react-autosize-textarea";
 
-class CommentExampleComment extends React.Component {
-  constructor() {
-    super();
+class Comments extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       levels: 6,
       replyBoxShow: false
@@ -28,14 +28,14 @@ class CommentExampleComment extends React.Component {
           <Comment>
             <Comment.Avatar src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
             <Comment.Content className="content-bottom">
-              <Comment.Author as="a">Elliot Fu</Comment.Author>
+              <Comment.Author as="a">
+                {this.props.comment.author.name}
+              </Comment.Author>
               <Comment.Metadata>
                 <div>Yesterday at 12:30AM</div>
               </Comment.Metadata>
               <Comment.Text>
-                <p>
-                  This has been very useful for my research. Thanks as well!
-                </p>
+                <p>{this.props.comment.body}</p>
               </Comment.Text>
               <Comment.Actions>
                 <Comment.Action>Like</Comment.Action>
@@ -58,11 +58,10 @@ class CommentExampleComment extends React.Component {
               <div />
             )}
 
-            {this.state.levels !== 1 ? (
-              <CommentCustom levels={this.state.levels - 1} />
-            ) : (
-              <div />
-            )}
+            {this.props.comment.replies &&
+              this.props.comment.replies.map(reply => (
+                <Comments key={reply._id} comment={reply} />
+              ))}
           </Comment>
         </Comment.Group>
       );
@@ -70,4 +69,4 @@ class CommentExampleComment extends React.Component {
   }
 }
 
-export default CommentExampleComment;
+export default Comments;

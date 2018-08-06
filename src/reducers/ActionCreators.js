@@ -39,7 +39,6 @@ export const fetchPosts = postCount => dispatch => {
     )
     .then(response => response.json())
     .then(posts => {
-      console.log("recieved posts" + JSON.stringify(posts));
       return dispatch(addPosts(posts));
     })
     .catch(error => {
