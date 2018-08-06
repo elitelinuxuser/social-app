@@ -41,7 +41,7 @@ class CommentCustom extends React.Component {
               <TextareaAutosize
                 className="textarea-custom"
                 rows={1}
-                placeholder="minimum height is 1 row"
+                placeholder="Reply here!"
               />
               <a type="submit" />
             </Form>

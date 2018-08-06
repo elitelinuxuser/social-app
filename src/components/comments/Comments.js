@@ -1,6 +1,5 @@
 import React from "react";
 import { Comment, Form } from "semantic-ui-react";
-import Button from "../ButtonCustom";
 import CommentCustom from "./CommentNested";
 import TextareaAutosize from "react-autosize-textarea";
 
@@ -51,7 +50,7 @@ class CommentExampleComment extends React.Component {
                 <TextareaAutosize
                   className="textarea-custom"
                   rows={3}
-                  placeholder="minimum height is 3 rows"
+                  placeholder="Comment here!"
                 />
                 <a type="submit" />
               </Form>
