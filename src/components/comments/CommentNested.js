@@ -40,7 +40,7 @@ class CommentCustom extends React.Component {
             <Form className="animated fadeIn">
               <TextareaAutosize
                 rows={1}
-                placeholder="minimun height is 3 rows"
+                placeholder="minimum height is 1 row"
               />
               <Button color="primary">Reply</Button>
             </Form>
