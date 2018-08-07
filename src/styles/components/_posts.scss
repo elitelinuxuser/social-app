@@ -1,3 +1,11 @@
 .username {
   padding-top: 7px;
 }
+
+.ant-card-body {
+  padding: 15px 5px 0 5px !important;
+}
+
+.container > .ant-card.ant-card-bordered {
+  margin-bottom: 20px !important;
+}

@@ -77,7 +77,7 @@ class NavbarHeader extends React.Component {
               <NavItem className="nav-search">
                 <form className="form-inline">
                   <input
-                    className="form-control form-control-sm mr-sm-2"
+                    className="form-control form-control-sm mr-sm-3"
                     type="text"
                     placeholder="Search"
                     aria-label="Search"

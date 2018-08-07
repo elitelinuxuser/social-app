@@ -1,0 +1,22 @@
+.addpost-form {
+  width: 100%;
+  border-radius: 10%;
+  border-width: 2.5px !important;
+  border-radius: 25px !important;
+  border-color: rgba(63, 81, 181, 0.8) !important;
+  overflow: hidden !important;
+}
+
+.addpost-wrapper {
+  padding-top: 4px;
+}
+
+.addpost-submit {
+  border-radius: 25px !important;
+}
+
+@media (min-width: 768px) {
+  .addpost-form-wrapper {
+    width: 55%;
+  }
+}

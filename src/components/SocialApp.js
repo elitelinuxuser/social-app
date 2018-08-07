@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Posts from "./Posts";
 import LandingPage from "./LandingPage";
 import { fetchPosts } from "../reducers/ActionCreators";
+import AddPost from "./AddPost";
 const RenderPost = props => {
   const posts = props.posts.map(post => <Posts post={post} />);
   return <div>{posts}</div>;
@@ -87,6 +88,7 @@ class SocialApp extends React.Component {
       <div className="main-div">
         {!this.props.user.name && <LandingPage />}
         {this.props.user.name && <Navbar />}
+        {this.props.user.name && <AddPost />}
         {this.props.loading && <Loading />}
         {this.props.user.name &&
           !this.props.loading &&
