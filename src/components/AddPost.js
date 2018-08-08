@@ -28,7 +28,7 @@ class AddPost extends Component {
   render() {
     return (
       <div align="center" className="container addpost-wrapper">
-        <Form className="animated fadeIn reply-form addpost-form-wrapper">
+        <Form className="animated slideInDown reply-form addpost-form-wrapper">
           <TextareaAutosize
             onClick={this.handleTextAreaClick}
             onMouseLeave={this.handleTextAreaOut}

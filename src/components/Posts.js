@@ -34,10 +34,10 @@ class Posts extends React.Component {
     console.log("post render" + JSON.stringify(this.props.posts));
     return (
       <div
-        className="container col-lg-6 col-md-4 mb-r"
+        className="container col-lg-6 col-md-4 mb-r animated slideInDown"
         style={{ maxWidth: "650px" }}
       >
-        <Card>
+        <Card className="z-depth-2">
           <Meta
             avatar={
               <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />

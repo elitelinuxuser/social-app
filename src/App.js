@@ -14,9 +14,10 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import postReducer from "./reducers/postReducer";
 import userReducer from "./reducers/userReducer";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./routers/AppRouter";
 
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(
   combineReducers({

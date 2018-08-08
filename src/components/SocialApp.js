@@ -89,7 +89,7 @@ class SocialApp extends React.Component {
         {!this.props.user.name && <LandingPage />}
         {this.props.user.name && <Navbar />}
         {this.props.user.name && <AddPost />}
-        {this.props.loading && <Loading />}
+        {this.props.loading && <Loading align="center" />}
         {this.props.user.name &&
           !this.props.loading &&
           this.props.posts.map(post => (

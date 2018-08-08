@@ -66,13 +66,13 @@ class NavbarHeader extends React.Component {
           <Collapse isOpen={this.state.collapse} navbar>
             <NavbarNav left>
               <NavItem active>
-                <NavLink to="#">Home</NavLink>
+                <NavLink to="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="#">Friends</NavLink>
+                <NavLink to="/friends">Friends</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="#">Colleges</NavLink>
+                <NavLink to="/colleges">Colleges</NavLink>
               </NavItem>
               <NavItem className="nav-search">
                 <form className="form-inline">
