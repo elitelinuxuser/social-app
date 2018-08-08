@@ -30,11 +30,9 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
-          <div className="App">
-            <SocialApp />
-          </div>
-        </BrowserRouter>
+        <div className="App">
+          <SocialApp />
+        </div>
       </Provider>
     );
   }

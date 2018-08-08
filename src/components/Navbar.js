@@ -72,7 +72,7 @@ class NavbarHeader extends React.Component {
                 <NavLink to="/friends">Friends</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/colleges">Colleges</NavLink>
+                <NavLink to="/collegesauisfg">Colleges</NavLink>
               </NavItem>
               <NavItem className="nav-search">
                 <form className="form-inline">
