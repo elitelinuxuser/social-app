@@ -21,7 +21,7 @@ export default class ButtonCustom extends React.Component {
         onMouseEnter={this.mouseEnter}
         onMouseLeave={this.mouseLeave}
         outline={this.state.isHovered}
-        className="mb-2"
+        className={this.props.className + " mb-2"}
       />
     );
   }

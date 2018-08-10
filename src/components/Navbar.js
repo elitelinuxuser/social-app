@@ -67,18 +67,18 @@ class NavbarHeader extends React.Component {
           <Collapse isOpen={this.state.collapse} navbar>
             <NavbarNav left>
               <NavItem active>
-                <NavLink to="#">Home</NavLink>
+                <NavLink to="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="#">Friends</NavLink>
+                <NavLink to="/friends">Friends</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="#">Colleges</NavLink>
+                <NavLink to="/collegesauisfg">Colleges</NavLink>
               </NavItem>
               <NavItem className="nav-search">
                 <form className="form-inline">
                   <input
-                    className="form-control form-control-sm mr-sm-2"
+                    className="form-control form-control-sm mr-sm-3"
                     type="text"
                     placeholder="Search"
                     aria-label="Search"

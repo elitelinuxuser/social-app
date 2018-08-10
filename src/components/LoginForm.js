@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ButtonCustom from "./ButtonCustom";
 import { login } from "../reducers/ActionCreators";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 class LoginForm extends Component {
   constructor() {
     super();
@@ -34,7 +33,6 @@ class LoginForm extends Component {
     setTimeout(() => {
       if (this.props.user.name) {
         console.log(JSON.stringify(this.props.user));
-        return <Redirect to="/post" />;
       }
     }, 3000);
   }

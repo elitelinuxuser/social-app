@@ -14,9 +14,10 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import postReducer from "./reducers/postReducer";
 import userReducer from "./reducers/userReducer";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./routers/AppRouter";
 
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(
   combineReducers({
@@ -29,11 +30,9 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
-          <div className="App">
-            <SocialApp />
-          </div>
-        </BrowserRouter>
+        <div className="App">
+          <SocialApp />
+        </div>
       </Provider>
     );
   }

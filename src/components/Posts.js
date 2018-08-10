@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Icon, Avatar } from "antd";
 import Comments from "./Comments";
 import { connect } from "react-redux";
-import { fetchComments } from "../reducers/ActionCreators";
 const { Meta } = Card;
 class Posts extends React.Component {
   constructor() {
@@ -34,15 +33,15 @@ class Posts extends React.Component {
     console.log("post render" + JSON.stringify(this.props.posts));
     return (
       <div
-        className="container col-lg-6 col-md-4 mb-r"
+        className="container col-lg-6 col-md-4 mb-r animated slideInDown"
         style={{ maxWidth: "650px" }}
       >
-        <Card>
+        <Card className="z-depth-2">
           <Meta
             avatar={
               <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             }
-            title={this.props.post.title}
+            title={this.props.post.author.name}
             description={this.props.post.body}
           />
 
@@ -55,6 +54,7 @@ class Posts extends React.Component {
             }
             actions={[
               <Icon
+                className="like-icon"
                 style={{ color: this.state.colorChange }}
                 type={this.state.iconType}
                 onClick={this.handleLikeClick}
