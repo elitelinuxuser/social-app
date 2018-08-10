@@ -48,8 +48,9 @@ class NavbarHeader extends React.Component {
   }
 
   handleSearch(e) {
+    e.preventDefault();
     const userName = e.target.value;
-    console.log(userName);
+    console.log(new RegExp(userName));
     this.setState({
       userName
     });
