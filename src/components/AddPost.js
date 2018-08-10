@@ -7,10 +7,12 @@ class AddPost extends Component {
   constructor() {
     super();
     this.state = {
-      rows: 2
+      rows: 2,
+      desc: ""
     };
     this.handleTextAreaClick = this.handleTextAreaClick.bind(this);
     this.handleTextAreaOut = this.handleTextAreaOut.bind(this);
+    this.handleDescChange = this.handleDescChange.bind(this);
   }
 
   handleTextAreaOut() {
@@ -25,6 +27,12 @@ class AddPost extends Component {
     });
   }
 
+  handleDescChange(e) {
+    this.setState({
+      desc: e.target.value
+    });
+  }
+
   render() {
     return (
       <div align="center" className="container addpost-wrapper">
@@ -33,6 +41,8 @@ class AddPost extends Component {
             onClick={this.handleTextAreaClick}
             onMouseLeave={this.handleTextAreaOut}
             className="addpost-form"
+            value={this.state.desc}
+            onChange={this.handleDescChange}
             rows={this.state.rows}
             placeholder="What's on your mind?"
           />

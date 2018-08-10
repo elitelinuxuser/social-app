@@ -40,7 +40,7 @@ class Comments extends React.Component {
             </Comment.Actions>
           </Comment.Content>
 
-          {this.state.replyBoxShow ? (
+          {this.state.replyBoxShow && (
             <Form className="animated fadeIn reply-form">
               <TextareaAutosize
                 className="textarea-custom"
@@ -49,8 +49,6 @@ class Comments extends React.Component {
               />
               <a type="submit" />
             </Form>
-          ) : (
-            <div />
           )}
 
           {this.props.comment.replies &&
