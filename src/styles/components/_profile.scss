@@ -1,0 +1,42 @@
+.profile-cover {
+  background: $site-blue;
+  height: 300px;
+  width: 100%;
+  transition: height 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  background: url("https://c1.staticflickr.com/1/180/439615710_28d6561810.jpg");
+  background-size: cover;
+}
+
+.profile-cover > img {
+  display: block;
+  border-radius: 50%;
+  border: 3px solid white;
+  width: 10%;
+  height: auto;
+  transition: border-radius 0.4s ease-in-out;
+  margin: 0 auto;
+}
+
+.profile-cover > img:hover {
+  border-radius: 0%;
+}
+
+.profile-cover:hover {
+  height: 400px;
+}
+
+@media (max-width: 768px) {
+  .profile-cover {
+    height: 200px;
+  }
+  .profile-cover > img {
+    width: auto;
+    height: 60%;
+  }
+}
+
+.profile-username {
+  transition: font-size 1s ease;
+}

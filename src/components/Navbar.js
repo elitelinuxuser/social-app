@@ -30,6 +30,7 @@ class NavbarHeader extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   onClick() {
@@ -43,8 +44,15 @@ class NavbarHeader extends React.Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
+
   handleLogout() {
     this.props.dispatch(logout());
+  }
+
+  handleClick() {
+    this.setState({
+      dropdownOpen: false
+    });
   }
 
   handleSearch(e) {
@@ -100,10 +108,20 @@ class NavbarHeader extends React.Component {
                       <i className="fa fa-angle-down" />
                     </DropdownToggle>
                     <DropdownMenu right>
-                      <DropdownItem href="#">Profile</DropdownItem>
-                      <DropdownItem href="#">Settings</DropdownItem>
-                      <DropdownItem href="#" onClick={this.handleLogout}>
-                        Logout
+                      <DropdownItem>
+                        <NavLink to="/profile" onClick={this.handleClick}>
+                          Profile
+                        </NavLink>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <NavLink to="/settings" onClick={this.handleClick}>
+                          Settings
+                        </NavLink>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <NavLink to="/" onClick={this.handleLogout}>
+                          Logout
+                        </NavLink>
                       </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
