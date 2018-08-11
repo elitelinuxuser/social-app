@@ -1,22 +1,61 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import Posts from "./Posts";
+import { fetchPosts } from "../reducers/ActionCreators";
 
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      fontSize: "5em"
+      fontSize: "4em",
+      height: window.innerHeight
     };
     this.handleScroll = this.handleScroll.bind(this);
+    this.props.dispatch(fetchPosts(this.props.postCount));
   }
 
-  handleScroll() {
+  handleScroll(e) {
     this.setState({
-      fontSize: "2rem"
+      fontSize: "4rem"
     });
+    if (
+      document.body.scrollTop > 100 ||
+      document.documentElement.scrollTop > 100
+    ) {
+      this.setState({
+        fontSize: "2.5rem"
+      });
+    }
+    console.log("scrolled");
+    const windowHeight =
+      "innerHeight" in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (
+      windowBottom >= docHeight &&
+      this.props.posts.length === this.props.postCount * 3
+    ) {
+      console.log(fetchPosts(this.props.postCount));
+      this.props.dispatch(fetchPosts(this.props.postCount));
+    }
   }
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
   render() {
     return (
@@ -37,9 +76,26 @@ class Profile extends Component {
             Lucifer
           </h2>
         </div>
+
+        {this.props.user.name &&
+          this.props.posts.map(
+            post =>
+              this.props.user.name === post.author.name && (
+                <Posts key={post._id + "wql"} post={post} />
+              )
+          )}
       </div>
     );
   }
 }
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    posts: state.posts.posts,
+    loading: state.posts.loading,
+    postCount: state.posts.postCount,
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Profile);

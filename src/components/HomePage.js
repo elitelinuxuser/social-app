@@ -73,7 +73,7 @@ class HomePage extends React.Component {
       return (
         <div className="col-12">
           <i
-            class="fa fa-circle-o-notch fa-spin"
+            className="fa fa-circle-o-notch fa-spin"
             style={{ fontSize: "24px" }}
           />
         </div>

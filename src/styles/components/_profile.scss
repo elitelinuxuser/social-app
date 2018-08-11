@@ -5,8 +5,8 @@
   transition: height 0.4s ease-in-out;
   display: flex;
   align-items: center;
-  background: url("https://c1.staticflickr.com/1/180/439615710_28d6561810.jpg");
-  background-size: cover;
+  background: url("http://colorfully.eu/wp-content/uploads/2012/10/empty-road-highway-with-fog-facebook-cover.jpg");
+  background-size: contain;
 }
 
 .profile-cover > img {
@@ -30,6 +30,7 @@
 @media (max-width: 768px) {
   .profile-cover {
     height: 200px;
+    background-size: cover;
   }
   .profile-cover > img {
     width: auto;
