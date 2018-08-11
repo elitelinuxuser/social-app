@@ -14,25 +14,40 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import postReducer from "./reducers/postReducer";
 import userReducer from "./reducers/userReducer";
-import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./routers/AppRouter";
+
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 import { createStore, applyMiddleware, combineReducers } from "redux";
 
-const store = createStore(
+import { PersistGate } from "redux-persist/integration/react";
+
+const persistConfig = {
+  key: "root",
+  storage
+};
+
+const persistedReducer = persistReducer(
+  persistConfig,
   combineReducers({
     posts: postReducer,
     user: userReducer
-  }),
-  applyMiddleware(thunk, logger)
+  })
 );
+
+const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
+
+let persistor = persistStore(store);
+
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <SocialApp />
-        </div>
+        <PersistGate loading={null} persistor={persistor}>
+          <div className="App">
+            <SocialApp />
+          </div>
+        </PersistGate>
       </Provider>
     );
   }
