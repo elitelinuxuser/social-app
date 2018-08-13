@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Icon, Avatar } from "antd";
-import Comments from "./Comments";
 import { connect } from "react-redux";
+import CommentWrapper from "./CommentWrapper";
 const { Meta } = Card;
 class Posts extends React.Component {
   constructor() {
@@ -64,11 +64,7 @@ class Posts extends React.Component {
               <Icon type="ellipsis" />
             ]}
           />
-          {this.state.commentShow &&
-            this.props.post.comments &&
-            this.props.post.comments.map(comment => (
-              <Comments key={comment._id} comment={comment} />
-            ))}
+          {this.state.commentShow && <CommentWrapper prop={this.props} />}
         </Card>
       </div>
     );

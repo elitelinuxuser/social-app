@@ -30,7 +30,7 @@ class RegisterForm extends Component {
   }
 
   handleUsnChange(e) {
-    const usn = e.target.value;
+    const usn = e.target.value.toUpperCase();
     this.setState({
       usn
     });
@@ -118,8 +118,8 @@ class RegisterForm extends Component {
           />
           <div className="container align-left">
             <label className="checkbox">
-              <input type="checkbox" />
-              I agree to the <a href="#">terms and conditions</a>
+              <input type="checkbox" />I agree to the{" "}
+              <a href="#">terms and conditions</a>
             </label>
           </div>
           <div className="text-center mt-1">

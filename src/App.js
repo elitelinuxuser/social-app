@@ -12,8 +12,8 @@ import SocialApp from "./components/SocialApp";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import postReducer from "./reducers/postReducer";
-import userReducer from "./reducers/userReducer";
+import posts from "./reducers/postReducer";
+import user from "./reducers/userReducer";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -24,20 +24,21 @@ import { PersistGate } from "redux-persist/integration/react";
 
 const persistConfig = {
   key: "root",
-  storage
+  storage,
+  blacklist: ["posts"]
 };
 
 const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
-    posts: postReducer,
-    user: userReducer
+    posts,
+    user
   })
 );
 
 const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
 
-let persistor = persistStore(store);
+const persistor = persistStore(store);
 
 class App extends Component {
   render() {

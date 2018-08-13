@@ -14,7 +14,7 @@ class Profile extends Component {
     this.props.dispatch(fetchPosts(this.props.postCount));
   }
 
-  handleScroll(e) {
+  handleScroll() {
     this.setState({
       fontSize: "4rem"
     });
@@ -73,7 +73,7 @@ class Profile extends Component {
             className="profile-username"
             style={{ fontSize: this.state.fontSize }}
           >
-            Lucifer
+            {this.props.user.name}
           </h2>
         </div>
 
