@@ -1,3 +1,5 @@
+import { addHeartStatus } from "./ActionCreators";
+
 const postReducer = (
   state = {
     posts: [],
@@ -13,6 +15,25 @@ const postReducer = (
         posts: state.posts.concat(action.data),
         postCount: state.postCount + 1,
         loading: false
+      };
+    case "ADD_SINGLE_POST":
+      return {
+        ...state,
+        posts: [action.data, ...state.posts],
+        postCount: state.postCount + 1,
+        loading: false
+      };
+    case "HEART_POST":
+      return {
+        ...state,
+        posts: state.posts.map(post => {
+          if (post._id === action.data._id) {
+            return {
+              ...post,
+              hearts: [action.data.hearts, ...post.hearts]
+            };
+          } else return post;
+        })
       };
     case "POST_LOADING":
       return { ...state, loading: true };

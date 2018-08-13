@@ -2,25 +2,33 @@ import React from "react";
 import { Card, Icon, Avatar } from "antd";
 import Comments from "./Comments";
 import { connect } from "react-redux";
+import { heartPost } from "../reducers/ActionCreators";
 const { Meta } = Card;
 class Posts extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const likeValue = this.props.post.hearts.indexOf(this.props.user._id)
+      ? true
+      : false;
     this.state = {
-      like: false,
-      iconType: "heart-o",
+      like: likeValue,
+      iconType: likeValue ? "heart-o" : "heart",
       colorChange: "rgba(0, 0, 0, 0.45)",
-      commentShow: false
+      commentShow: likeValue ? "rgba(0, 0, 0, 0.45)" : "#3F51B5"
     };
     this.handleLikeClick = this.handleLikeClick.bind(this);
     this.handleCommentClick = this.handleCommentClick.bind(this);
   }
-
   handleLikeClick() {
+    this.props.dispatch(heartPost(this.props.post._id));
+    const likeValue = this.props.post.hearts.indexOf(this.props.user._id)
+      ? true
+      : false;
     this.setState({
-      like: !this.state.like,
-      iconType: this.state.like ? "heart-o" : "heart",
-      colorChange: this.state.like ? "rgba(0, 0, 0, 0.45)" : "#3F51B5"
+      like: likeValue,
+      iconType: likeValue ? "heart-o" : "heart",
+      colorChange: "rgba(0, 0, 0, 0.45)",
+      commentShow: likeValue ? "rgba(0, 0, 0, 0.45)" : "#3F51B5"
     });
   }
 
@@ -30,7 +38,6 @@ class Posts extends React.Component {
     });
   }
   render() {
-    console.log("post render" + JSON.stringify(this.props.posts));
     return (
       <div
         className="container col-lg-6 col-md-4 mb-r animated slideInDown"
@@ -38,20 +45,12 @@ class Posts extends React.Component {
       >
         <Card className="z-depth-2">
           <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
             title={this.props.post.author.name}
             description={this.props.post.body}
           />
 
           <Card
-            cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-            }
+            cover={<img alt="example" />}
             actions={[
               <Icon
                 className="like-icon"
@@ -74,4 +73,9 @@ class Posts extends React.Component {
     );
   }
 }
-export default connect()(Posts);
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+export default connect(mapStateToProps)(Posts);

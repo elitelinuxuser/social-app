@@ -12,7 +12,8 @@ const userReducer = (
         ...state,
         _id: action.user._id,
         name: action.user.name,
-        email: action.user.email
+        email: action.user.email,
+        photo: action.user.photo
       };
     case "REMOVE_USER":
       return {

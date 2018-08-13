@@ -7,6 +7,7 @@ import HomePage from "../components/HomePage";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import LandingPage from "../components/LandingPage";
+import { connect } from "react-redux";
 
 const AppRouter = () => (
   <BrowserRouter>

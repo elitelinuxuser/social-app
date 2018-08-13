@@ -4,28 +4,17 @@ import React, { Component } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-
+import { ConfigureStore } from "./reducers/configureStore.js";
 //Social App Component
 import SocialApp from "./components/SocialApp";
 
 //Redux
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import logger from "redux-logger";
-import postReducer from "./reducers/postReducer";
-import userReducer from "./reducers/userReducer";
+
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./routers/AppRouter";
 
-import { createStore, applyMiddleware, combineReducers } from "redux";
-
-const store = createStore(
-  combineReducers({
-    posts: postReducer,
-    user: userReducer
-  }),
-  applyMiddleware(thunk, logger)
-);
+const store = ConfigureStore();
 class App extends Component {
   render() {
     return (

@@ -14,28 +14,6 @@ class HomePage extends React.Component {
     this.props.dispatch(fetchPosts(this.props.postCount));
   }
 
-  // componentDidMount() {
-  //   window.addEventListener("scroll", this.onScroll, false);
-  // }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener("scroll", this.onScroll, false);
-  // }
-
-  // onScroll = () => {
-  //   if (
-  //     window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
-  //     this.props.posts.length === this.props.postCount * 3
-  //   ) {
-  //     console.log(this.props.posts.legnth === this.props.postCount);
-  //     this.props.dispatch(fetchPosts(this.props.postCount));
-  //   }
-  // };
-  // componentDidUpdate() {
-  //   console.log("post count" + this.props.postCount * 3);
-  //   console.log("post length" + this.props.posts.length);
-  // }
-
   handleScroll() {
     console.log("scrolled");
     const windowHeight =
@@ -54,7 +32,7 @@ class HomePage extends React.Component {
     const windowBottom = windowHeight + window.pageYOffset;
     if (
       windowBottom >= docHeight &&
-      this.props.posts.length === this.props.postCount * 3
+      this.props.posts.length <= this.props.postCount * 3
     ) {
       this.props.dispatch(fetchPosts(this.props.postCount));
     }
@@ -67,7 +45,6 @@ class HomePage extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
-
   render() {
     const Loading = () => {
       return (
@@ -95,7 +72,6 @@ class HomePage extends React.Component {
 const mapStateToProps = state => {
   return {
     posts: state.posts.posts,
-    loading: state.posts.loading,
     postCount: state.posts.postCount,
     user: state.user
   };

@@ -12,7 +12,6 @@ export const postsLoading = () => ({
 
 export const fetchPosts = postCount => dispatch => {
   console.log("fetch posts action" + postCount);
-  postsLoading();
   return fetch(baseUrl + postCount, {
     mode: "cors",
     credentials: "include",
@@ -37,12 +36,64 @@ export const fetchPosts = postCount => dispatch => {
         throw errmess;
       }
     )
-    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
     .then(posts => {
-      return dispatch(addPosts(posts));
+      console.log(JSON.stringify(posts));
+      if (posts.length > 0) return dispatch(addPosts(posts));
+      return;
     })
     .catch(error => {
       console.log("dbjabd");
+      console.log(error);
+    });
+};
+export const addSinglePost = post => ({
+  type: "ADD_SINGLE_POST",
+  data: post
+});
+
+//newPost
+export const newPost = (body, authorid) => dispatch => {
+  const postObj = {
+    body,
+    authorid
+  };
+  return fetch(`${baseUrl}post`, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify(postObj),
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(
+      response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then(response => response.json())
+    .then(post => {
+      console.log(JSON.stringify(post));
+      return dispatch(addSinglePost(post));
+    })
+    .catch(error => {
+      console.log("Add new post error");
       console.log(error);
     });
 };
@@ -167,3 +218,40 @@ export const logout = () => dispatch => {
       console.log(error);
     });
 };
+export const heartPost = postid => dispatch => {
+  console.log(postid);
+  return fetch(`${baseUrl}post/${postid}/heart`, {
+    mode: "cors",
+    credentials: "include"
+  })
+    .then(
+      response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      error => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then(response => response.json())
+    .then(heartedPost => {
+      console.log("action ceator " + JSON.stringify(heartedPost));
+      return dispatch(addHeartStatus(heartedPost));
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const addHeartStatus = heartedPost => ({
+  type: ActionTypes.HEART_POST,
+  data: heartedPost
+});

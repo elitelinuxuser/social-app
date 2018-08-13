@@ -49,13 +49,10 @@ class SocialApp extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
-    posts: state.posts.posts,
-    loading: state.posts.loading,
-    postCount: state.posts.postCount,
     user: state.user
   };
 };
-
 export default connect(mapStateToProps)(SocialApp);
