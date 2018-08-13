@@ -7,9 +7,11 @@ const { Meta } = Card;
 class Posts extends React.Component {
   constructor(props) {
     super(props);
-    const likeValue = this.props.post.hearts.indexOf(this.props.user._id)
-      ? true
-      : false;
+    var likeValue;
+    if (this.props.post.hearts.indexOf(this.props.user._id) === -1) {
+      likeValue = false;
+    } else likeValue = true;
+
     this.state = {
       like: likeValue,
       iconType: likeValue ? "heart-o" : "heart",
@@ -27,8 +29,7 @@ class Posts extends React.Component {
     this.setState({
       like: likeValue,
       iconType: likeValue ? "heart-o" : "heart",
-      colorChange: "rgba(0, 0, 0, 0.45)",
-      commentShow: likeValue ? "rgba(0, 0, 0, 0.45)" : "#3F51B5"
+      colorChange: "rgba(0, 0, 0, 0.45)"
     });
   }
 
@@ -36,6 +37,10 @@ class Posts extends React.Component {
     this.setState({
       commentShow: !this.state.commentShow
     });
+  }
+  componentDidUpdate() {
+    console.log("post component update");
+    console.log(this.props.post.hearts.indexOf(this.props.user._id));
   }
   render() {
     return (
