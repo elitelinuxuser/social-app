@@ -6,8 +6,7 @@ import Friends from "../components/Friends";
 import HomePage from "../components/HomePage";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import LandingPage from "../components/LandingPage";
-import { connect } from "react-redux";
+import Profile from "../components/Profile";
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -17,6 +16,7 @@ const AppRouter = () => (
         <Route path="/" component={HomePage} exact />
         <Route path="/friends" component={Friends} />
         <Route path="/colleges" component={TabsPage} />
+        <Route path="/profile" component={Profile} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

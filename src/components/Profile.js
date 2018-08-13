@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Posts from "./Posts";
 import { fetchPosts } from "../reducers/ActionCreators";
-import AddPost from "./AddPost";
 
-class HomePage extends React.Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      fontSize: "4em",
       height: window.innerHeight
     };
     this.handleScroll = this.handleScroll.bind(this);
@@ -15,6 +15,17 @@ class HomePage extends React.Component {
   }
 
   handleScroll() {
+    this.setState({
+      fontSize: "4rem"
+    });
+    if (
+      document.body.scrollTop > 100 ||
+      document.documentElement.scrollTop > 100
+    ) {
+      this.setState({
+        fontSize: "2.5rem"
+      });
+    }
     console.log("scrolled");
     const windowHeight =
       "innerHeight" in window
@@ -32,8 +43,9 @@ class HomePage extends React.Component {
     const windowBottom = windowHeight + window.pageYOffset;
     if (
       windowBottom >= docHeight &&
-      this.props.posts.length <= this.props.postCount * 3
+      this.props.posts.length === this.props.postCount * 3
     ) {
+      console.log(fetchPosts(this.props.postCount));
       this.props.dispatch(fetchPosts(this.props.postCount));
     }
   }
@@ -46,35 +58,44 @@ class HomePage extends React.Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
   render() {
-    const Loading = () => {
-      return (
-        <div className="col-12">
-          <i
-            className="fa fa-circle-o-notch fa-spin"
-            style={{ fontSize: "24px" }}
+    return (
+      <div>
+        <div className="profile-cover container-fluid text-center">
+          <img
+            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+            className=""
+            alt=""
           />
         </div>
-      );
-    };
-    return (
-      <div className="main-div">
-        {this.props.user.name && <AddPost />}
-        {this.props.loading && <Loading align="center" />}
+        <div className="container">
+          <h2
+            align="center"
+            className="profile-username"
+            style={{ fontSize: this.state.fontSize }}
+          >
+            {this.props.user.name}
+          </h2>
+        </div>
+
         {this.props.user.name &&
-          !this.props.loading &&
-          this.props.posts.map(post => (
-            <Posts key={post._id} post={post} />
-          ))}{" "}
+          this.props.posts.map(
+            post =>
+              this.props.user.name === post.author.name && (
+                <Posts key={post._id + "wql"} post={post} />
+              )
+          )}
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     posts: state.posts.posts,
+    loading: state.posts.loading,
     postCount: state.posts.postCount,
     user: state.user
   };
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(Profile);

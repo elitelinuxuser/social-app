@@ -10,18 +10,45 @@ import SocialApp from "./components/SocialApp";
 
 //Redux
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import posts from "./reducers/postReducer";
+import user from "./reducers/userReducer";
 
-import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./routers/AppRouter";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const store = ConfigureStore();
+import { createStore, applyMiddleware, combineReducers } from "redux";
+
+import { PersistGate } from "redux-persist/integration/react";
+
+const persistConfig = {
+  key: "root",
+  storage,
+  blacklist: ["posts"]
+};
+
+const persistedReducer = persistReducer(
+  persistConfig,
+  combineReducers({
+    posts,
+    user
+  })
+);
+
+const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
+
+const persistor = persistStore(store);
+
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <SocialApp />
-        </div>
+        <PersistGate loading={null} persistor={persistor}>
+          <div className="App">
+            <SocialApp />
+          </div>
+        </PersistGate>
       </Provider>
     );
   }

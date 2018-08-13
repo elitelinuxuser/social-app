@@ -1,5 +1,6 @@
 # social-app
-Social Websites for VTU Students
+
+Social Website for VTU Students
 
 <h1>Usage</h1>
 <p><code>git clone https://github.com/luciferkde.social-app.git</code></p>

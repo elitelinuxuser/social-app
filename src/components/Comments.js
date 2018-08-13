@@ -11,6 +11,25 @@ class Comments extends React.Component {
     this.handleReplyClick = this.handleReplyClick.bind(this);
   }
 
+  handleCommentValue = e => {
+    this.setState({
+      commentValue: e.target.value
+    });
+  };
+
+  handleSubmit = () => {
+    alert(this.state.commentValue);
+  };
+
+  enterPress = e => {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      this.handleSubmit();
+      this.setState({
+        commentValue: ""
+      });
+    }
+  };
+
   handleReplyClick() {
     this.setState({
       replyBoxShow: !this.state.replyBoxShow
@@ -41,11 +60,17 @@ class Comments extends React.Component {
           </Comment.Content>
 
           {this.state.replyBoxShow && (
-            <Form className="animated fadeIn reply-form">
+            <Form
+              className="animated fadeIn reply-form"
+              onSubmit={this.handleSubmit}
+            >
               <TextareaAutosize
                 className="textarea-custom"
                 rows={1}
                 placeholder="Comment here!"
+                value={this.state.commentValue}
+                onChange={this.handleCommentValue}
+                onKeyDown={this.enterPress}
               />
               <a type="submit" />
             </Form>
